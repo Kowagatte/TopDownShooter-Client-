@@ -1,15 +1,10 @@
 package ca.damocles.level;
 
-import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.List;
-
-import ca.damocles.graphics.Window;
 import ca.damocles.sprites.Coin;
 import ca.damocles.sprites.Player;
-import ca.damocles.sprites.Player.Movements;
 import ca.damocles.sprites.Sprite;
-import ca.damocles.sprites.SpriteHandler;
-import ca.damocles.utils.ImageUtil;
 
 public class Level{
 	
@@ -22,6 +17,26 @@ public class Level{
 	
 	public Level() {
 		walls = new Sprite(32, 128);
+	}
+
+	public List<Sprite> getSprites() {
+		List<Sprite> objects = new ArrayList<>();
+		if(greenPlayer != null) 
+			objects.add(greenPlayer);
+		if(purplePlayer != null)
+			objects.add(purplePlayer);
+		if(greenSpawn != null) 
+			objects.add(greenSpawn);
+		if(purpleSpawn != null)
+			objects.add(purpleSpawn);
+		if(walls != null)
+			objects.add(walls);
+		if(coins != null) {
+			for(Sprite sprite : coins) {
+				objects.add(sprite);
+			}
+		}
+		return objects;
 	}
 	
 	

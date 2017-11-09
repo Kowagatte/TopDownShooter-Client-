@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
+import ca.damocles.level.Level;
 import ca.damocles.packet.Packet;
 import ca.damocles.packet.Packet.PacketEnum;
 
@@ -16,9 +17,13 @@ public class ServerConnection extends Thread{
 	private InputStream inputStream;
 	private BufferedReader buffReader;
 	private PrintStream outputStream;
+	private Level level;
 	
+	public void setLevel(Level level) {
+		this.level = level;
+	}
 
-    public ServerConnection(Socket clientSocket) {
+	public ServerConnection(Socket clientSocket) {
         this.socket = clientSocket;
         
         try {
@@ -58,8 +63,8 @@ public class ServerConnection extends Thread{
             			System.out.println(line);
                 			packet = new Packet(line).formPacket();
                 			
-                			if(packet.getEnum().equals(PacketEnum.RENDER_PACKET)) {
-                				ClientHandler.getInstance().getClient().window.repaint();
+                			if(packet.getEnum() == PacketEnum.RENDER_PACKET) {
+                				//ClientHandler.getInstance().getClient().window.repaint();
                 			}
                 			
                 			if( (packet.getEnum() == PacketEnum.DENIED_PACKET) || (packet.getEnum() == PacketEnum.CLOSE_PACKET) ) {
