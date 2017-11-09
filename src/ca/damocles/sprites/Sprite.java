@@ -24,7 +24,7 @@ public class Sprite {
         height = image.getHeight(null);
     }
 
-    protected void loadImage(String path, String imageName) {
+    public void loadImage(String path, String imageName) {
 		image = ImageUtil.getInstance().getImage(path, imageName);
     }
 
@@ -38,6 +38,14 @@ public class Sprite {
 
     public int getY() {
         return y;
+    }
+    
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public boolean isVisible() {

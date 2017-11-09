@@ -3,7 +3,7 @@ package ca.damocles.utils;
 public class LocationUtil {
 	
 	public static String serialize(int x, int y) {
-		return "(loc:"+x+":"+y+")";
+		return "(loc:"+x+":"+y+":)";
 	}
 	
 	public static int[] deserialize(String string) {

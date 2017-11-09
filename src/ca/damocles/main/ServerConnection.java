@@ -64,6 +64,7 @@ public class ServerConnection extends Thread{
                 			packet = new Packet(line).formPacket();
                 			
                 			if(packet.getEnum() == PacketEnum.RENDER_PACKET) {
+                				level.render(packet);
                 				//ClientHandler.getInstance().getClient().window.repaint();
                 			}
                 			

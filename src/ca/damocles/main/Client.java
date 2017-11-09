@@ -17,7 +17,7 @@ public class Client extends JPanel implements Runnable{
 	
 	/* SERIAL VERSION UID */
 	private static final long serialVersionUID = 3550596793369075558L;
-	private final int WIDTH = 928, HEIGHT = 736;
+	private final int WIDTH = 928, HEIGHT = 800;
 	private InputHandler inputHandler;
 	public ServerConnection connection;
 	public boolean connected = false;
@@ -55,7 +55,7 @@ public class Client extends JPanel implements Runnable{
 				connection = new ServerConnection(clientSocket);
 				start();
 			}
-		}catch (IOException e) { System.out.println(e); }
+		}catch (IOException e) { e.printStackTrace(); }
 	}
 	
 	public Level getLevel() {
@@ -76,9 +76,7 @@ public class Client extends JPanel implements Runnable{
 		connection.send(new Packet(PacketEnum.CLOSE_PACKET));
 		try {
 			thread.interrupt();
-		}catch(SecurityException e) {
-			e.printStackTrace();
-		}
+		}catch(SecurityException e) {e.printStackTrace();}
 		 connection.closeConnection();
 		 System.exit(0);
 	}
@@ -86,18 +84,16 @@ public class Client extends JPanel implements Runnable{
 	@Override
 	public void run() {
 		long lastTime = System.nanoTime();
-		double ticksPerSecond = 1000000000 / 60;
+		double secondsPerTicks = 1000000000 / 60;
 		double delta = 0;
 		while(connected) {
 			long now = System.nanoTime();
-			delta += (now - lastTime) / ticksPerSecond;
+			delta += (now - lastTime) / secondsPerTicks;
 			lastTime = now;
 			if(delta >= 1) {
 				repaint();
 				delta--;
 			}
-			
-			
 		}
 	}
 	
