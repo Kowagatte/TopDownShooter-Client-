@@ -9,8 +9,12 @@ public class SplashText {
 	
 	String[] splashTexts = {
 			"Java Edition!",
-			"Now with portals!"
-			};
+			"Now with portals!",
+			"I know, you know",
+			"Tom you know what you did wrong",
+			"I'm sorry Dave, I'm afraid I cant do that.",
+			"Use the force"
+	};
 	
 	public SplashText() {
 		int randomNumber = randomNumberGenerator.nextInt(splashTexts.length);
